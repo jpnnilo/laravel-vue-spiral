@@ -16,7 +16,6 @@ class RandomController extends Controller
        
         //insert random word to random table
         for($i = 0; $i < $randomDigit; $i++){
-
             $randomWord = fake()->word();
             $random = new Random;
             $random->value = $randomWord;
