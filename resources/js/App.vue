@@ -33,12 +33,6 @@ export default{
             breakdownWords:"",
         }
     },
-    methods:{
-        generateRandom(){
-            
-        }
-    },
-    
     created(){
         axios.get(`/api/generateRandom`)
         .then((response) => {

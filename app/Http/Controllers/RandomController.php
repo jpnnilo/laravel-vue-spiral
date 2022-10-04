@@ -15,7 +15,7 @@ class RandomController extends Controller
         $breakdownDigit = fake()->numberBetween($min=5, $max=10);
         $arRandomId = [];
         //insert random word to random table
-        for($i = 0; $i < $randomDigit; $i++){
+        for($i = 0; $i <= $randomDigit; $i++){
             $randomWord = fake()->word();
             $random = new Random;   
             $random->value = $randomWord;
@@ -24,7 +24,7 @@ class RandomController extends Controller
             array_push($arRandomId,$random->id);
 
              //insert 5 random character to breakdown table
-            for($j = 0; $j < $breakdownDigit; $j++){
+            for($j = 0; $j <= $breakdownDigit; $j++){
                 $breakdownWord = fake()->regexify('([A-Za-z0-9]){5}');
                 $breakdown = new Breakdown;
                 $breakdown->value =  $breakdownWord;
