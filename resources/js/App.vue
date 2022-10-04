@@ -2,6 +2,7 @@
 
 <h1>Vue Spiral</h1>
 <Button/>
+
     <div class="spiral">
         <svg viewBox="0 0 728 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -10,22 +11,61 @@
             </defs>
 
             <use xlink:href="#MyPath" fill="none" stroke-width="0" stroke="black"  />
-
-            <text font-family="Verdana" font-size="5">
+            <text font-family="Verdana" >
                 <textPath xlink:href="#MyPath">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut erat ut nisl vestibulum rhoncus. In ex lorem, interdum et mi ut, eleifend congue nibh. Vivamus at mollis quam. Donec eu tincidunt nunc, at eleifend elit. Aliquam sed erat et mi rutrum mollis ac eu mi. Aenean eleifend sapien at pellentesque vulputate. Donec pulvinar, purus non luctus lacinia, lectus augue mollis velit, vitae laoreet sapien est sed est. Aliquam dignissim, urna a venenatis ultrices, ligula felis luctus ex, non accumsan lacus ante quis eros. Ut elementum leo ac felis gravida, ac sagittis mi ultrices. Donec tincidunt augue ligula, eget malesuada.
+                    {{ breakdownWords }}
                 </textPath>
             </text>
 
         </svg>
     </div>
+    
+    
 </template>
 
-<script setup>
+<script>
+import { ref, onMounted } from '@vue/runtime-core'
 import Button from './components/Button.vue'
 
+export default{
+    components:{Button},
+    data(){
+        return {
+            randoms:[],
+            breakdowns:[],
+            breakdownWords:"",
+        }
+    },
+    methods:{
+        generateRandom(){
+            
+        }
+    },
+    
+    created(){
+        axios.get(`/api/generateRandom`)
+        .then((response) => {
+            console.log(response.data.random);
+            this.randoms = response.data.random;
+            (this.randoms).forEach(random => {
+                (random.breakdowns).forEach(breakdown => {
+                   
+                     this.breakdowns.push(breakdown.value);
+                })
+            });
 
-</script>
+            this.breakdownWords = this.breakdowns.join(" ");
+        })
+        .catch((error)=>{console.log(error)})
+    }
+    
+
+}
+
+
+
+
+</script> 
 
 
 <style scoped>
