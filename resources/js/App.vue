@@ -1,7 +1,7 @@
 <template>
 
-<h1>Vue Spiral</h1>
-<Button/>
+<h1>Laravel-Vue Spiral</h1>
+<h3>Refresh to generate new random breakdowns</h3>
 
     <div class="spiral">
         <svg viewBox="0 0 728 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -11,7 +11,7 @@
             </defs>
 
             <use xlink:href="#MyPath" fill="none" stroke-width="0" stroke="black"  />
-            <text font-family="Verdana" >
+            <text >
                 <textPath xlink:href="#MyPath">
                     {{ breakdownWords }}
                 </textPath>
@@ -24,11 +24,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from '@vue/runtime-core'
-import Button from './components/Button.vue'
 
 export default{
-    components:{Button},
     data(){
         return {
             randoms:[],
@@ -70,13 +67,21 @@ export default{
 
 <style scoped>
 
-h1{
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1,h3{
     text-align: center;
     margin: 40px 0;
+    font-weight: normal;
 }
 
 .spiral{
-    margin-top:-70px;
+    margin-top:-120px;
 }
 
+text{
+    font-size: 6px;
+}
 </style>
